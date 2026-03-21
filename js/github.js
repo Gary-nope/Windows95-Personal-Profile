@@ -49,7 +49,8 @@
         if (!container) return;
 
         if (!projects || projects.length === 0) {
-            container.innerHTML = '<div class="project-placeholder"><p>还没有公开项目，敬请期待！ 🚀</p></div>';
+            const msg = (typeof I18N !== 'undefined' && typeof currentLang !== 'undefined') ? I18N[currentLang]['projects.empty'] : '还没有公开项目，敬请期待！ 🚀';
+            container.innerHTML = '<div class="project-placeholder"><p>' + msg + '</p></div>';
             return;
         }
 
@@ -93,7 +94,8 @@
             setFallbackStats();
             const container = document.getElementById('github-projects');
             if (container) {
-                container.innerHTML = '<div class="project-placeholder"><p>项目加载失败，请稍后再试 🔄</p></div>';
+                const msg = (typeof I18N !== 'undefined' && typeof currentLang !== 'undefined') ? I18N[currentLang]['projects.loadFail'] : '项目加载失败，请稍后再试 🔄';
+                container.innerHTML = '<div class="project-placeholder"><p>' + msg + '</p></div>';
             }
         }
     }
@@ -107,9 +109,11 @@
             this.style.display = 'none';
             const wrapper = document.getElementById('github-heatmap');
             if (wrapper) {
-                wrapper.innerHTML = `
+                        const failMsg = (typeof I18N !== 'undefined' && typeof currentLang !== 'undefined') ? I18N[currentLang]['heatmap.fail'] : '贡献热力图加载失败';
+                        const viewMsg = (typeof I18N !== 'undefined' && typeof currentLang !== 'undefined') ? I18N[currentLang]['heatmap.viewOnGH'] : '在 GitHub 上查看';
+                        wrapper.innerHTML = `
                     <div style="text-align:center; padding:20px; color:var(--text-muted); font-size:0.85rem;">
-                        贡献热力图加载失败，<a href="https://github.com/${GITHUB_USERNAME}" target="_blank">在 GitHub 上查看</a>
+                        ${failMsg}，<a href="https://github.com/${GITHUB_USERNAME}" target="_blank">${viewMsg}</a>
                     </div>
                 `;
             }

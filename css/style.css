@@ -446,7 +446,6 @@ a:hover {
 #social-wechat:hover { color: var(--color-wechat); }
 #social-bilibili:hover { color: var(--color-bilibili); }
 
-.bilibili-soon { opacity: 0.5; cursor: default; }
 
 .hero-decoration { display: none; }
 

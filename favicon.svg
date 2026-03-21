@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <!-- Background: Win95 teal -->
+  <rect width="16" height="16" fill="#008080"/>
+  <!-- Border: dark navy inset -->
+  <rect x="0" y="0" width="16" height="1" fill="#000080"/>
+  <rect x="0" y="15" width="16" height="1" fill="#000080"/>
+  <rect x="0" y="0" width="1" height="16" fill="#000080"/>
+  <rect x="15" y="0" width="1" height="16" fill="#000080"/>
+  <!-- Letter "G" in pixel art - white -->
+  <!-- Top bar -->
+  <rect x="5" y="3" width="7" height="2" fill="#ffffff"/>
+  <!-- Left column -->
+  <rect x="3" y="5" width="2" height="8" fill="#ffffff"/>
+  <!-- Bottom bar -->
+  <rect x="5" y="11" width="7" height="2" fill="#ffffff"/>
+  <!-- Right lower -->
+  <rect x="10" y="8" width="2" height="3" fill="#ffffff"/>
+  <!-- Middle bar of G -->
+  <rect x="8" y="7" width="4" height="2" fill="#ffffff"/>
+  <!-- Top-left corner pixel -->
+  <rect x="4" y="3" width="1" height="2" fill="#ffffff"/>
+  <!-- Bottom-left corner -->
+  <rect x="4" y="11" width="1" height="2" fill="#ffffff"/>
+  <!-- Highlight: Win95 3D effect top-left -->
+  <rect x="1" y="1" width="14" height="1" fill="#00a0a0"/>
+  <rect x="1" y="1" width="1" height="14" fill="#00a0a0"/>
+  <!-- Shadow: Win95 3D effect bottom-right -->
+  <rect x="1" y="14" width="14" height="1" fill="#006060"/>
+  <rect x="14" y="1" width="1" height="14" fill="#006060"/>
+</svg>

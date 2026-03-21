@@ -164,6 +164,44 @@ a:hover {
     background: var(--win-gray);
 }
 
+/* Language Toggle Button */
+.nav-lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 3px 8px;
+    height: 26px;
+    background: var(--win-gray);
+    box-shadow: var(--shadow-button);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--win-black);
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: 4px;
+}
+
+.nav-lang-btn:hover {
+    background: var(--win-gray-light);
+}
+
+.nav-lang-btn:active {
+    box-shadow: var(--shadow-button-pressed);
+}
+
+.lang-icon {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.lang-text {
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
 /* ========== MAIN CONTAINER ========== */
 .bento-container {
     position: relative;

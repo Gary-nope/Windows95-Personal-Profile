@@ -8,7 +8,7 @@ const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 // ===== Netease =====
 async function neteaseSearch(keyword, page = 1) {
     const params = new URLSearchParams({ s: keyword, type: '1', limit: '20', offset: String((page - 1) * 20) });
-    const res = await fetch('http://music.163.com/api/search/get/web?' + params, {
+    const res = await fetch('https://music.163.com/api/search/get/web?' + params, {
         headers: { 'User-Agent': UA, 'Referer': 'https://music.163.com', 'Cookie': 'appver=2.7.1.198277; os=pc;' },
     });
     const d = await res.json();

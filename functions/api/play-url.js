@@ -7,7 +7,7 @@ const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 // ===== Netease Play URL =====
 async function neteaseGetUrl(id) {
-    const res = await fetch('http://music.163.com/api/song/enhance/player/url?ids=[' + id + ']&br=320000', {
+    const res = await fetch('https://music.163.com/api/song/enhance/player/url?ids=[' + id + ']&br=320000', {
         headers: { 'User-Agent': UA, 'Referer': 'https://music.163.com', 'Cookie': 'appver=2.7.1.198277; os=pc;' },
     });
     const d = await res.json();
@@ -18,7 +18,7 @@ async function neteaseGetUrl(id) {
 // ===== Netease Search (for bridge) =====
 async function neteaseSearch(keyword) {
     const params = new URLSearchParams({ s: keyword, type: '1', limit: '5', offset: '0' });
-    const res = await fetch('http://music.163.com/api/search/get/web?' + params, {
+    const res = await fetch('https://music.163.com/api/search/get/web?' + params, {
         headers: { 'User-Agent': UA, 'Referer': 'https://music.163.com', 'Cookie': 'appver=2.7.1.198277; os=pc;' },
     });
     const d = await res.json();

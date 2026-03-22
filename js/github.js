@@ -1,6 +1,7 @@
 /* ============================================
-   GitHub Stats & Projects (Cached via /api/github-stats)
-   Data refreshes every 30 minutes server-side.
+   GitHub Stats & Projects
+   Reads from static JSON file: /data/github-stats.json
+   Data is auto-updated every 6 hours via GitHub Actions.
    ============================================ */
 
 (function initGitHub() {
@@ -77,7 +78,7 @@
     // Fetch everything from cached endpoint (single request!)
     async function fetchAll() {
         try {
-            const res = await fetch('/api/github-stats');
+            const res = await fetch('/data/github-stats.json');
             if (!res.ok) throw new Error('API error ' + res.status);
             const data = await res.json();
 

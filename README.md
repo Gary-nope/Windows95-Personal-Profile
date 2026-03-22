@@ -101,14 +101,19 @@ Personal-Profile/
 │   └── style.css           # All styles + Win95 design system | 样式+Win95设计系统
 ├── js/
 │   ├── main.js             # Core logic, i18n, particles, typewriter | 核心逻辑
-│   ├── github.js           # GitHub API integration | GitHub API 集成
+│   ├── github.js           # GitHub stats display | GitHub 数据展示
 │   └── music-player.js     # Music search & playback | 音乐搜索与播放
+├── data/
+│   └── github-stats.json   # Auto-updated GitHub data | 自动更新的 GitHub 数据
 ├── assets/
 │   ├── pixel-computer.svg  # Pixel art computer (reserved) | 像素小电脑（备用）
 │   └── screenshots/        # README screenshots | README 截图
-└── functions/
-    └── api/
-        └── github-stats.js # Cloudflare Function for caching | Cloudflare 缓存函数
+├── functions/
+│   └── api/
+│       └── github-stats.js # Cloudflare Function (legacy) | Cloudflare 函数（备用）
+└── .github/
+    └── workflows/
+        └── update-stats.yml # Auto-fetch GitHub data every 6h | 每6小时自动拉取数据
 ```
 
 ## Getting Started | 快速开始 🚀

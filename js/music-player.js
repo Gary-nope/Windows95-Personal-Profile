@@ -13,6 +13,7 @@
     const prevBtn = document.getElementById('player-prev');
     const nextBtn = document.getElementById('player-next');
     const downloadBtn = document.getElementById('player-download');
+    const loopModeBtn = document.getElementById('player-loop-mode');
     const progressBar = document.getElementById('player-progress-bar');
     const progressFill = document.getElementById('player-progress-fill');
     const currentTimeEl = document.getElementById('player-current-time');
@@ -34,6 +35,7 @@
     let currentIndex = -1;
     let isPlaying = false;
     let currentSongUrl = '';
+    let loopMode = 'list'; // 'list' = sequential/list loop, 'single' = single repeat
     const audio = new Audio();
     audio.volume = 0.6;
     audio.preload = 'metadata';
@@ -193,6 +195,21 @@
     prevBtn.addEventListener('click', () => { if (playlist.length) playSong((currentIndex - 1 + playlist.length) % playlist.length); });
     nextBtn.addEventListener('click', () => { if (playlist.length) playSong((currentIndex + 1) % playlist.length); });
 
+    // ====== Loop Mode Toggle ======
+    if (loopModeBtn) {
+        loopModeBtn.addEventListener('click', () => {
+            if (loopMode === 'list') {
+                loopMode = 'single';
+                loopModeBtn.textContent = '🔂';
+                loopModeBtn.title = '单曲循环';
+            } else {
+                loopMode = 'list';
+                loopModeBtn.textContent = '🔁';
+                loopModeBtn.title = '列表循环';
+            }
+        });
+    }
+
     downloadBtn.addEventListener('click', () => {
         if (!currentSongUrl || currentIndex < 0) { alert('请先搜索并播放一首歌曲'); return; }
         window.open(currentSongUrl, '_blank');
@@ -210,7 +227,15 @@
         const rect = progressBar.getBoundingClientRect();
         if (audio.duration) audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
     });
-    audio.addEventListener('ended', () => { if (playlist.length) playSong((currentIndex + 1) % playlist.length); });
+    audio.addEventListener('ended', () => {
+        if (!playlist.length) return;
+        if (loopMode === 'single') {
+            audio.currentTime = 0;
+            audio.play().catch(() => {});
+        } else {
+            playSong((currentIndex + 1) % playlist.length);
+        }
+    });
     volumeSlider.addEventListener('input', e => { audio.volume = e.target.value / 100; });
 
     function formatTime(s) { if (isNaN(s)) return '0:00'; return `${Math.floor(s / 60)}:${Math.floor(s % 60).toString().padStart(2, '0')}`; }

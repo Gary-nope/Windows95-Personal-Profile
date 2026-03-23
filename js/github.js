@@ -1,7 +1,7 @@
 /* ============================================
    GitHub Stats & Projects
-   Reads from static JSON file: /data/github-stats.json
-   Data is auto-updated every 6 hours via GitHub Actions.
+   Stats: from static JSON (auto-updated every 4h)
+   Projects: real-time from GitHub API (fallback: static JSON)
    ============================================ */
 
 (function initGitHub() {
@@ -75,28 +75,61 @@
         }).join('');
     }
 
-    // Fetch everything from cached endpoint (single request!)
+    // Fetch projects directly from GitHub API (real-time)
+    async function fetchProjectsLive() {
+        const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated&direction=desc`);
+        if (!res.ok) throw new Error('GitHub API ' + res.status);
+        const repos = await res.json();
+        return repos
+            .filter(r => !r.fork)
+            .slice(0, 6)
+            .map(r => ({
+                name: r.name,
+                description: r.description || 'No description',
+                html_url: r.html_url,
+                language: r.language || '',
+                stars: r.stargazers_count || 0,
+            }));
+    }
+
+    // Fetch stats from static JSON, projects from live API
     async function fetchAll() {
+        // 1. Stats from static JSON (updated every 4 hours)
         try {
             const res = await fetch('/data/github-stats.json');
-            if (!res.ok) throw new Error('API error ' + res.status);
-            const data = await res.json();
-
-            // Stats
-            animateNumber('stat-repos', data.stats.public_repos);
-            animateNumber('stat-stars', data.stats.stars);
-            animateNumber('stat-followers', data.stats.followers);
-            animateNumber('stat-following', data.stats.following);
-
-            // Projects
-            renderProjects(data.projects);
+            if (res.ok) {
+                const data = await res.json();
+                animateNumber('stat-repos', data.stats.public_repos);
+                animateNumber('stat-stars', data.stats.stars);
+                animateNumber('stat-followers', data.stats.followers);
+                animateNumber('stat-following', data.stats.following);
+            } else {
+                setFallbackStats();
+            }
         } catch (err) {
-            console.warn('GitHub data fetch failed:', err);
+            console.warn('Stats fetch failed:', err);
             setFallbackStats();
-            const container = document.getElementById('github-projects');
-            if (container) {
-                const msg = (typeof I18N !== 'undefined' && typeof currentLang !== 'undefined') ? I18N[currentLang]['projects.loadFail'] : '项目加载失败，请稍后再试 🔄';
-                container.innerHTML = '<div class="project-placeholder"><p data-i18n="projects.loadFail">' + msg + '</p></div>';
+        }
+
+        // 2. Projects from GitHub API (real-time)
+        try {
+            const liveProjects = await fetchProjectsLive();
+            renderProjects(liveProjects);
+        } catch (err) {
+            console.warn('Live projects fetch failed, falling back to static:', err);
+            // Fallback: try to use projects from static JSON
+            try {
+                const res = await fetch('/data/github-stats.json');
+                if (res.ok) {
+                    const data = await res.json();
+                    renderProjects(data.projects);
+                }
+            } catch (_) {
+                const container = document.getElementById('github-projects');
+                if (container) {
+                    const msg = (typeof I18N !== 'undefined' && typeof currentLang !== 'undefined') ? I18N[currentLang]['projects.loadFail'] : '项目加载失败，请稍后再试 🔄';
+                    container.innerHTML = '<div class="project-placeholder"><p data-i18n="projects.loadFail">' + msg + '</p></div>';
+                }
             }
         }
     }

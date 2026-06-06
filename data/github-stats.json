@@ -1,11 +1,18 @@
 {
   "stats": {
-    "public_repos": 3,
+    "public_repos": 4,
     "followers": 3,
     "following": 8,
     "stars": 0
   },
   "projects": [
+    {
+      "name": "KARDS-Assets",
+      "description": "A public KARDS assets repository.",
+      "html_url": "https://github.com/Gary-nope/KARDS-Assets",
+      "language": "",
+      "stars": 0
+    },
     {
       "name": "Windows95-Personal-Profile",
       "description": "My personal profile with Windows-95 theme.",
@@ -28,5 +35,5 @@
       "stars": 0
     }
   ],
-  "updated_at": "2026-06-06T13:27:17.556Z"
+  "updated_at": "2026-06-06T17:10:41.658Z"
 }

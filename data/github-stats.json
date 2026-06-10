@@ -7,17 +7,17 @@
   },
   "projects": [
     {
-      "name": "Windows95-Personal-Profile",
-      "description": "My personal profile with Windows-95 theme.",
-      "html_url": "https://github.com/Gary-nope/Windows95-Personal-Profile",
+      "name": "KARDS-Assets",
+      "description": "A public KARDS assets repository.",
+      "html_url": "https://github.com/Gary-nope/KARDS-Assets",
       "language": "JavaScript",
       "stars": 0
     },
     {
-      "name": "KARDS-Assets",
-      "description": "A public KARDS assets repository.",
-      "html_url": "https://github.com/Gary-nope/KARDS-Assets",
-      "language": "",
+      "name": "Windows95-Personal-Profile",
+      "description": "My personal profile with Windows-95 theme.",
+      "html_url": "https://github.com/Gary-nope/Windows95-Personal-Profile",
+      "language": "JavaScript",
       "stars": 0
     },
     {
@@ -35,5 +35,5 @@
       "stars": 0
     }
   ],
-  "updated_at": "2026-06-10T08:05:06.809Z"
+  "updated_at": "2026-06-10T15:28:44.128Z"
 }

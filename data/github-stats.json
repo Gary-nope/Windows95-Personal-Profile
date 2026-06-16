@@ -7,18 +7,18 @@
   },
   "projects": [
     {
-      "name": "KARDS-Assets",
-      "description": "A public KARDS assets repository.",
-      "html_url": "https://github.com/Gary-nope/KARDS-Assets",
-      "language": "JavaScript",
-      "stars": 1
-    },
-    {
       "name": "Windows95-Personal-Profile",
       "description": "My personal profile with Windows-95 theme.",
       "html_url": "https://github.com/Gary-nope/Windows95-Personal-Profile",
       "language": "JavaScript",
       "stars": 0
+    },
+    {
+      "name": "KARDS-Assets",
+      "description": "A public KARDS assets repository.",
+      "html_url": "https://github.com/Gary-nope/KARDS-Assets",
+      "language": "JavaScript",
+      "stars": 1
     },
     {
       "name": "AI-Drum-Transcriber-Workflow",
@@ -35,5 +35,5 @@
       "stars": 0
     }
   ],
-  "updated_at": "2026-06-16T16:46:51.936Z"
+  "updated_at": "2026-06-16T22:09:21.830Z"
 }
